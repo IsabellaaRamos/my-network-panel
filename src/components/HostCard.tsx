@@ -48,13 +48,49 @@ export function HostCard({ host, className }: HostCardProps) {
                             "text-xs font-medium",
                             isOnline && "bg-success text-sucess-foreground",
                         )}
-                        
+                    >
                      {host.status.toUpperCase()}
                       </Badge>
+                    </div>
+        </CardHeader>
 
+        <CardContent className="pt-0 space-y-3"> 
+            <div className="text-sm text-muted-foreground font-mono">
+                {host.address}
+            </div>
+            <div className="flex items -center justify-between">
+                <Activity className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium">Latency:</span>
+            </div>
+            <div className="text-right">
+                {host.latency !== null ? (
+                    <span className={cn(
+                        "font-bold text-lg",
+                        host.latency < 50 && "text-success",
+                        host.latency >= 50 && host.latency < 100 && "text-warning",
+                        host.latency >= 100 && "text-destructive"
+
+                    )}>
+                         {host.latency}ms
+                    </span>
+                ) : (
+                    <span className="text-muted-foreground">--</span>
+                )}
+
+            </div> 
+                </div>
+            <div className="flex items-center gap-2 text-xz=s text-muted-foreground">
+                <Clock className="w-3 h-3" />
+                <span>Last cheked: {host.lastChecked.toLocaleDateString()}</span>
+            </div>
+
+            {isOnline && (
+                <div className="absolute top-2 right-2">
+                    <div className="w=2 h-2 bg-success rounded-full animate-pulse" />
                     </div>
 
                 </div>
-        </Card>
+            )}
+        </CardContent>
     )
 }
