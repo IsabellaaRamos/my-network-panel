@@ -90,6 +90,47 @@ const AlertDialogFooter = ({
  )
  AlertDialogFooter.displayName = "AlertDialogFooter"
 
+ const AlertDialogTitle = React.forwardRef<
+    React.ElementRef<typeof AlertDialogPrimitive.Title>,
+    React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>
+>(({ className, ...props}, ref) => (
+    <AlertDialogPrimitive.Title
+        ref={ref}
+        className={cn("text-lg font-semibold", className)}
+        {...props}
+       /> 
+))
+AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName 
+
+const AlertDialogDescription = React.forwardRef<
+    React.ElementRef<typeof AlertDialogPrimitive.Description>,
+    React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>
+>(({ className, ...props}, ref) => (
+   <AlertDialogPrimitive.Description
+       ref={ref}
+       className={cn("text-sm text-muted-foreground", className)}
+       {...props}
+    />
+ 
+))
+AlertDialogDescription.displayName =
+   AlertDialogPrimitive.Description.displayName
+
+const AlertDialogContent = React.forwardRef<
+    React.ElementRef<typeof AlertDialogPrimitive.Action>,
+    React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
+>(({ className, ...props},  ref) => (
+    <AlertDialogPrimitive.Action
+        ref={ref}
+        className={cn(buttonVariants(), className)}
+        {...props}
+        />
+     
+))
+AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName
+    
+    
+
  
  
 
